@@ -56,37 +56,18 @@ onSubmit(event) {
   console.log("Clicked submit");
   event.preventDefault();
 
-  //Validation commented out for testing
-  /*
   if (!event.target.checkValidity()) {
     this.setState({ invalid: true });
-    console.log("Invalid");
+    alert("All fields are required and emails must be in email format.");
     return;
   } else {
     this.setState({
     invalid: false,
     });
-  }*/
-
-  //Email sending commented out for testing
-  /*
-  let template_params = {
-    "to": "oscar@zealley.com",
-    "to_name": "Oscar",
-    "santa_recipient": "Barbara"
   }
 
-  window.emailjs.send(SERVICE_ID, TEMPLATE_ID, template_params)
-  .then(function(response) {
-    console.log('SUCCESS!', response.status, response.text);
- }, function(error) {
-    console.log('FAILED...', error);
- });
-
- */
-
-
-
+  let mailList = generateMailList(this.state.participants);
+  sendMails(mailList);
 
   let resultString = JSON.stringify(this.state.participants);
   console.log(resultString);
@@ -148,6 +129,34 @@ class RemoveButton extends React.Component {
       </button>
     );
   };
+}
+
+function sendMails(mailList) {
+  let success = true;
+  for(let mailee of mailList) {
+    window.emailjs.send(SERVICE_ID, TEMPLATE_ID, mailee)
+    .then(function(response) {
+      console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+      success = false;
+      console.log('FAILED...', error);
+    });
+  }
+
+  if(success) {
+    alert('Emails successfully sent!');
+    this.setState({
+      numParticipants: 4,
+      participants: [
+        {id: 0, name: "", email: ""},
+        {id: 1, name: "", email: ""},
+        {id: 2, name: "", email: ""},
+        {id: 3, name: "", email: ""}
+      ]
+  })
+  } else {
+    alert('One or more emails failed to send. Verify that the addresses provided are correct.');
+  }
 }
 
 function generateMailList(formData) {
