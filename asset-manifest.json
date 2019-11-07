@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/santa/static/css/main.b100e6da.chunk.css",
-    "main.js": "/santa/static/js/main.87479da5.chunk.js",
-    "main.js.map": "/santa/static/js/main.87479da5.chunk.js.map",
+    "main.js": "/santa/static/js/main.73d397df.chunk.js",
+    "main.js.map": "/santa/static/js/main.73d397df.chunk.js.map",
     "runtime-main.js": "/santa/static/js/runtime-main.3d8da218.js",
     "runtime-main.js.map": "/santa/static/js/runtime-main.3d8da218.js.map",
     "static/css/2.b0bb7f2c.chunk.css": "/santa/static/css/2.b0bb7f2c.chunk.css",
     "static/js/2.8bb9dc91.chunk.js": "/santa/static/js/2.8bb9dc91.chunk.js",
     "static/js/2.8bb9dc91.chunk.js.map": "/santa/static/js/2.8bb9dc91.chunk.js.map",
     "index.html": "/santa/index.html",
-    "precache-manifest.a49918fca3e1681ea2468b8345078ec7.js": "/santa/precache-manifest.a49918fca3e1681ea2468b8345078ec7.js",
+    "precache-manifest.66e115e8d6b8ae9b44882b1362b123be.js": "/santa/precache-manifest.66e115e8d6b8ae9b44882b1362b123be.js",
     "service-worker.js": "/santa/service-worker.js",
     "static/css/2.b0bb7f2c.chunk.css.map": "/santa/static/css/2.b0bb7f2c.chunk.css.map",
     "static/css/main.b100e6da.chunk.css.map": "/santa/static/css/main.b100e6da.chunk.css.map"
@@ -19,6 +19,6 @@
     "static/css/2.b0bb7f2c.chunk.css",
     "static/js/2.8bb9dc91.chunk.js",
     "static/css/main.b100e6da.chunk.css",
-    "static/js/main.87479da5.chunk.js"
+    "static/js/main.73d397df.chunk.js"
   ]
 }
