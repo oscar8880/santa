@@ -9,9 +9,8 @@ class Participant extends Component {
     };
 
     formChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
-        let updatedState = this.state;
-        this.props.updateState(updatedState);
+        this.setState({ [e.target.name]: e.target.value },
+          () => {this.props.updateState(this.state);} );        
     }
 
     render() {
@@ -37,6 +36,7 @@ class Participant extends Component {
                         type = "email"
                         name="email"
                         onChange={(e) => {this.formChange(e)}}
+                        onFocusOut={(e) => {this.formChange(e)}}
                         required
                         />
                       </div>
