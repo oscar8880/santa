@@ -30,9 +30,10 @@ updateState = (participant) => {
 }
 
 onAddClick (e) {
-  this.setState({numParticipants: this.state.numParticipants + 1});
   let result = this.state.participants;
-  result.push({id: this.state.numParticipants - 1, name: "", email: ""});
+  result.push({id: this.state.numParticipants, name: "", email: ""});
+  this.setState({numParticipants: this.state.numParticipants + 1,
+  participants: result});
 }
 
 onRemoveClick(e) {
@@ -153,8 +154,7 @@ function generateMailList(formData) {
   let result = [];
 
   let names
-  //names = pickFromHat(formData) ******* Function to create ********
-  names = ["Aidan", "Francesca", "Oscar"];
+  names = pickFromHat(formData);
 
   let i = 0;
 
@@ -169,13 +169,37 @@ function generateMailList(formData) {
 
   return result;
 }
-/*
+
+
 function pickFromHat(formData) {
-  let result = [];
-  let names = [];
-  for(let participant of formData) {
-    result.push(contact);
+
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+   }
+
+  function shiftArray(array, times) {
+  let output = array;
+  let appender = array.slice(array.length - times);
+  for(let i = 0; i < times; i++) {
+    output.pop();
   }
+  output = appender.concat(output);
+
+  return output;
 }
-*/
+
+  let originalNames = [];
+  let result = [];
+  for(let participant of formData) {
+    originalNames.push(participant.name);
+  }
+  let count = originalNames.length;
+  let shiftTimes = getRandomInt(1, count);
+  result = shiftArray(originalNames, shiftTimes);
+
+  return result;
+}
+
 export default App;
