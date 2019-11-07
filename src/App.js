@@ -129,27 +129,6 @@ render() {
 }
 }
 
-function generateMailList(formData) {
-  let result = [];
-
-  let names
-  //names = pickFromHat(formData) ******* Function to create ********
-  names = ["Aidan", "Francesca", "Oscar"];
-
-  let i = 0;
-
-  for(let participant of formData) {
-    let contact = {
-      "to": participant.email,
-      "to_name": participant.name,
-      "santa_recipient": names[i++]
-    };
-    result.push(contact);
-  }
-
-  return result;
-}
-
 class AddButton extends React.Component {
   render() {
     return (
@@ -170,4 +149,33 @@ class RemoveButton extends React.Component {
   };
 }
 
+function generateMailList(formData) {
+  let result = [];
+
+  let names
+  //names = pickFromHat(formData) ******* Function to create ********
+  names = ["Aidan", "Francesca", "Oscar"];
+
+  let i = 0;
+
+  for(let participant of formData) {
+    let contact = {
+      "to": participant.email,
+      "to_name": participant.name,
+      "santa_recipient": names[i++]
+    };
+    result.push(contact);
+  }
+
+  return result;
+}
+/*
+function pickFromHat(formData) {
+  let result = [];
+  let names = [];
+  for(let participant of formData) {
+    result.push(contact);
+  }
+}
+*/
 export default App;
