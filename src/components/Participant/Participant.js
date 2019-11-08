@@ -16,7 +16,28 @@ class Participant extends Component {
     render() {
         return (
             <div className="form-group">
-                    <h4 className="col">Participant {this.props.id + 1}</h4>
+                    <h5 className="col">Participant {this.props.id + 1}</h5>
+                    <div className="row">
+                      <div className="col">
+                        <input 
+                        type="text" 
+                        className="form-control" 
+                        placeholder="Name"
+                        name = "name"
+                        onChange={(e) => {this.formChange(e)}}
+                        required/>
+                      </div>
+                      <div className="col">
+                        <input 
+                        type="email" 
+                        className="form-control" 
+                        placeholder="Email address"
+                        name = "email"
+                        onChange={(e) => {this.formChange(e)}}
+                        required/>
+                      </div>
+                    </div>
+                    {/*}
                     <div className="row-md">
                       <div className="col-sm">
                         <label className="col-sm control-label" for="email">Name</label>
@@ -40,8 +61,8 @@ class Participant extends Component {
                         required
                         />
                       </div>
+        {*/}
                       <br/>
-                    </div>
                   </div>
         );
     }

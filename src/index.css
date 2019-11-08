@@ -11,3 +11,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+#bootstrap-overrides {
+  color: white;
+  background-color: #26532B;
+}
+
+#bootstrap-overrides .jumbotron {
+  background-color: #399E5A;
+}
+
+#bootstrap-overrides .container-fluid {
+  margin-top: 2rem;
+}
+
+#bootstrap-overrides h5{
+  font-weight: bold;
+}
+
+#bootstrap-overrides {
+  font-family: "Nunito", sans-serif;
+}
+
+#bootstrap-overrides .btn-primary{
+  background-color: #26532B;
+  border-color: #26532B;
+}
+
+#bootstrap-overrides .btn-secondary{
+  background-color: #26532B;
+}
+
+

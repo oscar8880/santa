@@ -67,11 +67,39 @@ onSubmit(event) {
   }
 
   let mailList = generateMailList(this.state.participants);
-  sendMails(mailList);
+  this.sendMails(mailList);
 
   let resultString = JSON.stringify(this.state.participants);
   console.log(resultString);
   console.log(generateMailList(this.state.participants));
+}
+
+sendMails(mailList) {
+  let succeeded = true;
+  for(let mailee of mailList) {
+    window.emailjs.send(SERVICE_ID, TEMPLATE_ID, mailee)
+    .then(function(response) {
+      console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+      succeeded = false;
+      console.log('FAILED...', error);
+    });
+  }
+
+  if(succeeded) {
+    alert('Emails successfully sent!');
+    this.setState({
+      numParticipants: 4,
+      participants: [
+        {id: 0, name: "", email: ""},
+        {id: 1, name: "", email: ""},
+        {id: 2, name: "", email: ""},
+        {id: 3, name: "", email: ""}
+      ]
+  })
+  } else {
+    alert('One or more emails failed to send. Verify that the addresses provided are correct.');
+  }
 }
 
 render() {
@@ -81,31 +109,35 @@ render() {
   }
 
   return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-2"></div>
-          <div className="col-md-8">
-            <div className="jumbotron" id="content">
-            <form className="well form-vertical" action=" " id="santa_form" onSubmit={(e) => this.onSubmit(e)} noValidate>
-                <fieldset>
-                  <legend><center><h2><b>Secret Santa</b></h2></center></legend><br />
-                  {participantHolder}
-                </fieldset>
-                <div className="text-center">
-                  <AddButton onClick={()=> this.onAddClick()}></AddButton>
-                  <br/>
-                  <br/>
-                  <RemoveButton onClick={(e) => this.onRemoveClick(e)}></RemoveButton>
-                  <br/>
-                  <br/>
-                </div>
-                <div className="text-center">
-                  <button className="btn btn-primary btn-sm">Submit</button>
-                </div>
-              </form>
+    <div>
+  
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-3"></div>
+            <div className="col-md-6">
+              <div className="jumbotron" id="content">
+              <form className="well form-vertical" action=" " id="santa_form" onSubmit={(e) => this.onSubmit(e)} noValidate>
+                  <fieldset>
+                    <legend><center><h2><b>Secret Santa</b></h2></center></legend><br />
+                    {participantHolder}
+                  </fieldset>
+                  <div className="text-center">
+                    <span>
+                      <AddButton onClick={()=> this.onAddClick()}></AddButton>
+                      <span>  </span>
+                      <RemoveButton onClick={(e) => this.onRemoveClick(e)}></RemoveButton>
+                    </span>
+                    <br/>
+                    <br/>
+                  </div>
+                  <div className="text-center">
+                    <button className="btn btn-secondary btn-sm">Submit</button>
+                  </div>
+                </form>
+              </div>
             </div>
-          </div>
-        </div>  
+          </div>  
+      </div>
     </div>
   );
 }
@@ -129,34 +161,6 @@ class RemoveButton extends React.Component {
       </button>
     );
   };
-}
-
-function sendMails(mailList) {
-  let success = true;
-  for(let mailee of mailList) {
-    window.emailjs.send(SERVICE_ID, TEMPLATE_ID, mailee)
-    .then(function(response) {
-      console.log('SUCCESS!', response.status, response.text);
-    }, function(error) {
-      success = false;
-      console.log('FAILED...', error);
-    });
-  }
-
-  if(success) {
-    alert('Emails successfully sent!');
-    this.setState({
-      numParticipants: 4,
-      participants: [
-        {id: 0, name: "", email: ""},
-        {id: 1, name: "", email: ""},
-        {id: 2, name: "", email: ""},
-        {id: 3, name: "", email: ""}
-      ]
-  })
-  } else {
-    alert('One or more emails failed to send. Verify that the addresses provided are correct.');
-  }
 }
 
 function generateMailList(formData) {
